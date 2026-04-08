@@ -19,16 +19,37 @@
         .dash-box {
             background: #fff; padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); width: 100%; max-width: 480px;
         }
-        .dash-title { text-align: center; color: #2c3e50; font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; font-family: 'El Messiri', sans-serif; }
-        .dash-desc { text-align: center; color: #7f8c8d; font-size: 0.9rem; margin-bottom: 25px; }
+        .dash-title { text-align: center; color: #2c3e50; font-size: 1.6rem; font-weight: 700; margin-bottom: 25px; font-family: 'El Messiri', sans-serif; white-space: nowrap; }
+        
         .dash-group { margin-bottom: 18px; text-align: right; }
         .dash-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #34495e; font-size: 0.95rem; }
         .dash-group input, .dash-group select { width: 100%; padding: 14px; border: 2px solid #ecf0f1; border-radius: 12px; font-family: 'Cairo'; outline: none; transition: 0.3s; box-sizing: border-box; }
-        .dash-group input:focus, .dash-group select:focus { border-color: #3498db; background: #f8fbfe; }
+        .dash-group input:focus, .dash-group select:focus { border-color: #007AFF; background: #f8fbfe; }
         .theme-select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 15px center; }
         
-        .dash-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #3498db, #2980b9); color: #fff; font-size: 1.2rem; font-family: 'Cairo'; font-weight: 700; border: none; border-radius: 15px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .dash-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3); }
+        /* تعديل زر الإنشاء (ستايل أيفون/iOS) */
+        .dash-btn { 
+            width: 100%; 
+            padding: 14px; 
+            background: #007AFF; 
+            color: #fff; 
+            font-size: 1.1rem; 
+            font-family: 'Cairo', sans-serif; 
+            font-weight: 700; 
+            border: none; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            margin-top: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
+        }
+        .dash-btn:hover:not(:disabled) { 
+            transform: scale(0.97); 
+            background: #0066cc;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2); 
+        }
+        .dash-btn:disabled { background: #a2c8f2; cursor: not-allowed; box-shadow: none; transform: scale(1); }
+
         .dash-result { margin-top: 25px; padding: 20px; background: #eafaf1; border: 2px dashed #2ecc71; border-radius: 15px; display: none; text-align: center; animation: fadeIn 0.5s; }
         .dash-result h4 { color: #27ae60; margin-bottom: 10px; font-size: 1.2rem; font-weight: bold; }
         .dash-result input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #aaddb8; border-radius: 10px; text-align: left; direction: ltr; font-size: 0.85rem; background: #fff; box-sizing: border-box; color: #555;}
@@ -38,10 +59,35 @@
         .action-btn.secondary:hover { background: #2c3e50; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* قسم التواصل وحقوق الملكية في الأسفل */
+        .dash-footer { margin-top: 35px; padding-top: 25px; border-top: 1px solid #ecf0f1; text-align: center; }
+        .dash-footer p { color: #34495e; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
+        
+        /* تصميم الإيميل الجديد (أيقونة دائرية فقط) */
+        .contact-email { 
+            display: inline-flex; 
+            justify-content: center;
+            align-items: center; 
+            background: #fff; 
+            border: 1px solid #eaeaea; 
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; 
+            color: #ea4335; 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            transition: all 0.3s ease; 
+            margin-bottom: 20px;
+        }
+        .contact-email:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 15px rgba(234, 67, 53, 0.2); border-color: #ea4335; background: #ea4335; color: white; }
+        
+        /* تصغير حقوق الملكية بشكل قوي جداً */
+        .dash-copyright { font-size: 0.5rem; color: #bdc3c7; font-weight: 600; letter-spacing: 0.5px; margin-top: 5px; }
+
         /* =========================================================
            2. CSS التصميم الاحترافي (للزوار) - الألوان (Themes)
            ========================================================= */
-        /* أسود لامع (الافتراضي) - بدون أي أزرق */
         :root {
             --bg-gradient: linear-gradient(145deg, #2a2a2a 0%, #000000 40%, #000000 100%); 
             --text-color: #ffffff;
@@ -50,18 +96,15 @@
             --shadow-color: rgba(0, 0, 0, 0.8); 
             --border-color: rgba(255, 255, 255, 0.1);
         }
-        /* أزرق ملكي */
         body.theme-blue {
             --bg-gradient: linear-gradient(135deg, #000428 0%, #004e92 100%); --text-color: #ffffff;
             --btn-bg: rgba(255, 255, 255, 0.07); --panel-bg: rgba(0, 30, 80, 0.95); --shadow-color: rgba(0, 0, 0, 0.5); --border-color: rgba(255, 255, 255, 0.15);
         }
-        /* أبيض */
         body.theme-white {
             --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%); --text-color: #111111;
             --btn-bg: rgba(0, 0, 0, 0.05); --panel-bg: rgba(255, 255, 255, 0.98); --shadow-color: rgba(0, 0, 0, 0.1); --border-color: rgba(0, 0, 0, 0.1);
         }
         body.theme-white .fa-tiktok { color: #000000 !important; text-shadow: none; }
-        /* أوف وايت ملكي */
         body.theme-offwhite {
             --bg-gradient: linear-gradient(135deg, #edeae0 0%, #e0dcd0 100%); --text-color: #2a0202; 
             --btn-bg: rgba(0, 0, 0, 0.05); --panel-bg: rgba(237, 234, 224, 0.98); --shadow-color: rgba(0, 0, 0, 0.12); --border-color: rgba(0, 0, 0, 0.06);
@@ -96,7 +139,6 @@
         .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 75px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
         .settings-panel.active { transform: scale(1); opacity: 1; visibility: visible; }
 
-        /* ستايل زر إنشاء الموقع الاحترافي الجديد */
         .create-site-btn {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
@@ -149,7 +191,7 @@
         .main-content .btn-wrapper:nth-child(n+6) .btn { animation: popGlass 0.8s 3.5s forwards; }
         @keyframes popGlass { 0% { opacity: 0; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
 
-        .copyright-bottom { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); font-family: 'Cairo', sans-serif; font-size: 7.5px; color: #8e8e8e; opacity: 0; white-space: nowrap; animation: fadeInAll 1s 3.6s forwards; letter-spacing: 0.5px; }
+        .copyright-bottom { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); font-family: 'Cairo', sans-serif; font-size: 6px; color: #8e8e8e; opacity: 0; white-space: nowrap; animation: fadeInAll 1s 3.6s forwards; letter-spacing: 0.5px; }
         .fa-tiktok { color: #ffffff; text-shadow: -1.5px -1.5px 0 #25F4EE, 1.5px 1.5px 0 #FE2C55; }
     </style>
 </head>
@@ -158,7 +200,6 @@
     <div id="dashboardView" style="display: none; width: 100%;">
         <div class="dash-box">
             <h2 class="dash-title">مصمم المواقع الذكي</h2>
-            <p class="dash-desc">أدخل بياناتك وسيتم إنشاء صفحتك الاحترافية فوراً!</p>
             
             <div class="dash-group">
                 <label>اسمك (سيظهر أعلى الصفحة) <span style="color:red">*</span></label>
@@ -204,7 +245,7 @@
                 <input type="email" id="inputEmail" placeholder="example@gmail.com">
             </div>
 
-            <button class="dash-btn" onclick="generateLink()">إنشاء صفحتي الآن</button>
+            <button class="dash-btn" id="createBtn" onclick="startGeneration()">إنشاء</button>
 
             <div class="dash-result" id="resultArea">
                 <h4>تم إنشاء صفحتك بنجاح!</h4>
@@ -212,6 +253,16 @@
                 <input type="text" id="resultUrl" readonly>
                 <button class="action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> نسخ الرابط</button>
                 <button class="action-btn secondary" onclick="openResult()"><i class="fas fa-external-link-alt"></i> فتح صفحتي لمعاينتها</button>
+            </div>
+
+            <div class="dash-footer">
+                <p>لتواصل معنا ارسل رساله</p>
+                
+                <a href="mailto:qwrtreu1245@gmail.com" class="contact-email" title="إرسال رسالة إلينا">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                
+                <div class="dash-copyright">جميع الحقوق محفوظة للمطور أحمد غنيم</div>
             </div>
         </div>
     </div>
@@ -255,12 +306,10 @@
         const profileName = urlParams.get('n');
 
         if (profileName) {
-            // ================== وضع العرض (التصميم الاحترافي) ==================
             document.body.classList.add('profile-mode');
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('profileView').style.display = 'block';
 
-            // تفعيل لون الموقع الذي اختاره العميل
             const selectedTheme = urlParams.get('c');
             if (selectedTheme && selectedTheme !== 'black') {
                 document.body.classList.add('theme-' + selectedTheme);
@@ -294,24 +343,45 @@
                 createLink(mail, 'fas fa-envelope', 'color: #EA4335;', 'Email');
             }
 
-            // تشغيل القائمة الجانبية المبسطة
             initSimpleSettings();
 
         } else {
-            // ================== وضع لوحة التحكم ==================
             document.body.classList.add('dashboard-mode');
             document.getElementById('dashboardView').style.display = 'flex';
             document.getElementById('profileView').style.display = 'none';
         }
 
-        function generateLink() {
+        function startGeneration() {
             const n = document.getElementById('inputName').value.trim();
             if (!n) { alert("أرجوك اكتب اسمك أولاً!"); return; }
 
+            const btn = document.getElementById('createBtn');
+            btn.disabled = true;
+            
+            let count = 3;
+            btn.innerText = "جاري التجهيز " + count + "...";
+
+            const interval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    btn.innerText = "جاري التجهيز " + count + "...";
+                } else {
+                    clearInterval(interval);
+                    btn.innerText = "اكتمل!";
+                    setTimeout(() => {
+                        generateLink();
+                        btn.innerText = "إنشاء";
+                        btn.disabled = false;
+                    }, 500);
+                }
+            }, 1000);
+        }
+
+        function generateLink() {
+            const n = document.getElementById('inputName').value.trim();
             const params = new URLSearchParams();
             params.set('n', n);
 
-            // حفظ اللون إذا لم يكن الأسود الافتراضي
             const theme = document.getElementById('inputTheme').value;
             if (theme !== 'black') { params.set('c', theme); }
 
@@ -338,7 +408,6 @@
             window.open(document.getElementById('resultUrl').value, '_blank');
         }
 
-        // تشغيل زر الإعدادات وإخفائها
         function initSimpleSettings() {
             const settingsBtn = document.getElementById('settingsBtn');
             const settingsPanel = document.getElementById('settingsPanel');
@@ -362,7 +431,6 @@
             overlay.onclick = closePanel;
         }
 
-        // توجيه العميل الجديد لعمل موقعه الخاص (بإزالة بيانات المستخدم الحالي من الرابط)
         function goToDashboard() {
             window.location.href = window.location.href.split('?')[0];
         }
