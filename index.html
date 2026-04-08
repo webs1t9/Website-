@@ -41,10 +41,14 @@
         /* =========================================================
            2. CSS التصميم الاحترافي (للزوار) - الألوان (Themes)
            ========================================================= */
-        /* أسود ملكي (الافتراضي) */
+        /* أسود لامع (الافتراضي) - بدون أي أزرق */
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); --text-color: #ffffff;
-            --btn-bg: rgba(255, 255, 255, 0.07); --panel-bg: rgba(20, 20, 25, 0.95); --shadow-color: rgba(0, 0, 0, 0.6); --border-color: rgba(255, 255, 255, 0.1);
+            --bg-gradient: linear-gradient(145deg, #2a2a2a 0%, #000000 40%, #000000 100%); 
+            --text-color: #ffffff;
+            --btn-bg: rgba(255, 255, 255, 0.05); 
+            --panel-bg: rgba(10, 10, 10, 0.90); 
+            --shadow-color: rgba(0, 0, 0, 0.8); 
+            --border-color: rgba(255, 255, 255, 0.1);
         }
         /* أزرق ملكي */
         body.theme-blue {
@@ -89,8 +93,35 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.4s; }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        .settings-panel { position: fixed; top: 20px; left: 20px; width: 270px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 75px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
+        .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 75px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
         .settings-panel.active { transform: scale(1); opacity: 1; visibility: visible; }
+
+        /* ستايل زر إنشاء الموقع الاحترافي الجديد */
+        .create-site-btn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            width: 100%;
+            margin: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+        .create-site-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
 
         .profile-pic { width: 90px; height: 90px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid var(--border-color); box-shadow: 0 10px 25px var(--shadow-color); margin-bottom: 12px; opacity: 0; animation: popGlass 0.8s 2.5s forwards, gentlePulse 5s ease-in-out 3.3s infinite; }
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); box-shadow: 0 10px 25px var(--shadow-color); } 50% { transform: scale(1.03); box-shadow: 0 18px 35px var(--shadow-color); } }
@@ -98,7 +129,6 @@
         .header-name-wrapper { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; opacity: 0; transform: translateY(15px); animation: wrapperSlideUp 1.2s 2.7s forwards; direction: ltr; gap: 6px; }
         @keyframes wrapperSlideUp { to { opacity: 1; transform: translateY(0); } }
         .header-name { font-family: 'Dancing Script', cursive; font-size: 1.9rem; color: #B8860B; }
-        .verify-badge { color: #1DA1F2; font-size: 1.1rem; }
 
         .main-content { width: 100%; max-width: 340px; display: flex; flex-direction: column; align-items: center; opacity: 0; animation: fadeInAll 0.8s 2.4s forwards; margin-bottom: 60px; }
         @keyframes fadeInAll { to { opacity: 1; } }
@@ -138,7 +168,7 @@
             <div class="dash-group">
                 <label><i class="fas fa-palette" style="color: #8e44ad;"></i> لون الموقع</label>
                 <select id="inputTheme" class="theme-select">
-                    <option value="black">أسود ملكي (الافتراضي)</option>
+                    <option value="black">أسود لامع (الافتراضي)</option>
                     <option value="blue">أزرق ملكي</option>
                     <option value="white">أبيض</option>
                     <option value="offwhite">أوف وايت ملكي</option>
@@ -199,8 +229,8 @@
         <div class="overlay" id="overlay"></div>
 
         <div class="settings-panel" id="settingsPanel">
-            <button class="action-btn" onclick="goToDashboard()" style="margin: 0; width: 100%; font-size: 0.95rem; background: linear-gradient(135deg, #2ecc71, #27ae60);">
-                <i class="fas fa-magic"></i> لعمل موقعك الأول زور موقعنا
+            <button class="create-site-btn" onclick="goToDashboard()">
+                <i class="fas fa-magic"></i> لانشاء موقعك زورو موقعنا.
             </button>
         </div>
 
@@ -208,7 +238,6 @@
             <div class="profile-pic" id="profile-pic-div"></div>
             <div class="header-name-wrapper">
                 <div class="header-name" id="dynamicName">Ahmed</div>
-                <i class="fas fa-check-circle verify-badge"></i>
             </div>
             <div class="main-content">
                 <div class="links-container" id="dynamicLinks"></div>
