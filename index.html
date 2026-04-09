@@ -447,8 +447,15 @@
             document.title = profileName;
 
             const imgUrl = urlParams.get('i');
-            const fallbackImg = 'https://i.supaimg.com/d73ac461-53ca-466f-bc1e-61f2abd83dfe/01659496-a3b9-4e9f-9a68-1da631d42a99.jpg';
-            document.getElementById('profile-pic-div').style.backgroundImage = `url('${imgUrl || fallbackImg}')`;
+            const profilePicDiv = document.getElementById('profile-pic-div');
+            
+            // إذا كان هناك رابط صورة، ضعها
+            if (imgUrl) {
+                profilePicDiv.style.backgroundImage = `url('${imgUrl}')`;
+            } else {
+                // إذا لم يكن هناك رابط، قم بإخفاء إطار الصورة بالكامل
+                profilePicDiv.style.display = 'none';
+            }
 
             const linksContainer = document.getElementById('dynamicLinks');
             
