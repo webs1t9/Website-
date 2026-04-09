@@ -27,7 +27,6 @@
         .dash-group input:focus, .dash-group select:focus { border-color: #007AFF; background: #f8fbfe; }
         .theme-select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 15px center; }
         
-        /* تعديل زر الإنشاء (ستايل أيفون/iOS) */
         .dash-btn { 
             width: 100%; 
             padding: 14px; 
@@ -59,7 +58,6 @@
         .action-btn.secondary:hover { background: #2c3e50; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* قسم التواصل وحقوق الملكية في الأسفل */
         .dash-footer { margin-top: 35px; padding-top: 25px; border-top: 1px solid #ecf0f1; text-align: center; }
         .dash-footer p { color: #34495e; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
         
@@ -124,7 +122,7 @@
 
         .container { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; min-height: 100vh; padding: 20px; text-align: center; padding-top: 10vh; padding-bottom: 50px; }
 
-        /* تم تصغير زر الإعدادات هنا (من 42 بكسل إلى 34 بكسل) */
+        /* تم تصغير زر الإعدادات إلى 34 بكسل */
         .settings-icon { position: fixed; top: 20px; left: 20px; color: var(--text-color); background: var(--btn-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); width: 34px; height: 34px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; z-index: 1005; opacity: 0; box-shadow: 0 4px 15px var(--shadow-color); animation: popGlass 0.8s 2.4s forwards; transition: transform 0.3s ease; }
         .settings-icon:hover { transform: translateY(-2px) scale(1.05); }
         .settings-icon .line { width: 16px; height: 2px; background-color: var(--text-color); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
@@ -138,7 +136,7 @@
         .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 65px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
         .settings-panel.active { transform: scale(1); opacity: 1; visibility: visible; }
 
-        /* تم تصغير حجم الخط والمسافات الداخلية لزر إنشاء الموقع */
+        /* تم تصغير حجم الخط والمسافات الداخلية لزر التصميم */
         .create-site-btn {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
@@ -165,7 +163,7 @@
             box-shadow: 0 6px 20px var(--shadow-color);
         }
 
-        /* كلاس جديد مخصص لجملة الحقوق داخل لوحة الإعدادات */
+        /* تنسيق جملة الحقوق المنقولة داخل الإعدادات */
         .settings-copyright {
             font-family: 'Cairo', sans-serif; 
             font-size: 6px; 
@@ -302,10 +300,7 @@
             </div>
             <div class="main-content">
                 <div class="links-container" id="dynamicLinks"></div>
-                <div class="wish" style="font-family: 'Dancing Script', cursive; font-size: 0.95rem; color: #B8860B; margin-top: 25px; display: flex; align-items: center; gap: 8px;">
-                    Have a nice day <i class="fas fa-sparkles" style="font-size: 0.8rem;"></i>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -332,8 +327,9 @@
 
             const linksContainer = document.getElementById('dynamicLinks');
             
+            // هذه الوظيفة تتجاهل أي رابط يتم تركه فارغاً ولن تنشئ زراً له
             function createLink(url, iconClass, colorStyle, text) {
-                if (!url) return;
+                if (!url) return; // إذا كان الرابط فارغاً، يتم إيقاف إنشاء الزر
                 const wrapper = document.createElement('div');
                 wrapper.className = 'btn-wrapper';
                 wrapper.innerHTML = `<a href="${url}" class="btn" target="_blank"><i class="${iconClass}" style="${colorStyle}"></i> ${text}</a>`;
@@ -398,6 +394,7 @@
 
             fields.forEach((field, index) => {
                 const val = document.getElementById(ids[index]).value.trim();
+                // هنا النظام يجمع فقط البيانات التي تم إدخالها ويتجاهل الحقول الفارغة
                 if (val) params.set(field, val);
             });
 
