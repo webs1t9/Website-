@@ -63,7 +63,6 @@
         .dash-footer { margin-top: 35px; padding-top: 25px; border-top: 1px solid #ecf0f1; text-align: center; }
         .dash-footer p { color: #34495e; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
         
-        /* تصميم الإيميل الجديد (أيقونة دائرية فقط) */
         .contact-email { 
             display: inline-flex; 
             justify-content: center;
@@ -82,7 +81,6 @@
         }
         .contact-email:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 15px rgba(234, 67, 53, 0.2); border-color: #ea4335; background: #ea4335; color: white; }
         
-        /* تصغير حقوق الملكية بشكل قوي جداً */
         .dash-copyright { font-size: 0.5rem; color: #bdc3c7; font-weight: 600; letter-spacing: 0.5px; margin-top: 5px; }
 
         /* =========================================================
@@ -126,43 +124,55 @@
 
         .container { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; min-height: 100vh; padding: 20px; text-align: center; padding-top: 10vh; padding-bottom: 50px; }
 
-        .settings-icon { position: fixed; top: 20px; left: 20px; color: var(--text-color); background: var(--btn-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); width: 42px; height: 42px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; z-index: 1005; opacity: 0; box-shadow: 0 4px 15px var(--shadow-color); animation: popGlass 0.8s 2.4s forwards; transition: transform 0.3s ease; }
+        /* تم تصغير زر الإعدادات هنا (من 42 بكسل إلى 34 بكسل) */
+        .settings-icon { position: fixed; top: 20px; left: 20px; color: var(--text-color); background: var(--btn-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); width: 34px; height: 34px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; z-index: 1005; opacity: 0; box-shadow: 0 4px 15px var(--shadow-color); animation: popGlass 0.8s 2.4s forwards; transition: transform 0.3s ease; }
         .settings-icon:hover { transform: translateY(-2px) scale(1.05); }
-        .settings-icon .line { width: 20px; height: 2px; background-color: var(--text-color); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
-        .settings-icon.rotate .line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .settings-icon .line { width: 16px; height: 2px; background-color: var(--text-color); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+        .settings-icon.rotate .line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
         .settings-icon.rotate .line:nth-child(2) { opacity: 0; transform: translateX(-10px); }
-        .settings-icon.rotate .line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .settings-icon.rotate .line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.4s; }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 75px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
+        .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 65px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
         .settings-panel.active { transform: scale(1); opacity: 1; visibility: visible; }
 
+        /* تم تصغير حجم الخط والمسافات الداخلية لزر إنشاء الموقع */
         .create-site-btn {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 12px;
             cursor: pointer;
             font-family: 'Cairo', sans-serif;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             width: 100%;
             margin: 0;
             transition: all 0.4s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             box-shadow: 0 4px 15px var(--shadow-color);
         }
         .create-site-btn:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        /* كلاس جديد مخصص لجملة الحقوق داخل لوحة الإعدادات */
+        .settings-copyright {
+            font-family: 'Cairo', sans-serif; 
+            font-size: 6px; 
+            color: #8e8e8e; 
+            letter-spacing: 0.5px; 
+            text-align: center;
+            margin-top: 15px;
         }
 
         .profile-pic { width: 90px; height: 90px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid var(--border-color); box-shadow: 0 10px 25px var(--shadow-color); margin-bottom: 12px; opacity: 0; animation: popGlass 0.8s 2.5s forwards, gentlePulse 5s ease-in-out 3.3s infinite; }
@@ -191,7 +201,6 @@
         .main-content .btn-wrapper:nth-child(n+6) .btn { animation: popGlass 0.8s 3.5s forwards; }
         @keyframes popGlass { 0% { opacity: 0; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
 
-        .copyright-bottom { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); font-family: 'Cairo', sans-serif; font-size: 6px; color: #8e8e8e; opacity: 0; white-space: nowrap; animation: fadeInAll 1s 3.6s forwards; letter-spacing: 0.5px; }
         .fa-tiktok { color: #ffffff; text-shadow: -1.5px -1.5px 0 #25F4EE, 1.5px 1.5px 0 #FE2C55; }
     </style>
 </head>
@@ -281,7 +290,9 @@
 
         <div class="settings-panel" id="settingsPanel">
             <button class="create-site-btn" onclick="goToDashboard()">
-                <i class="fas fa-magic"></i> صمم موقعك بضغطة زر            </button>
+                <i class="fas fa-magic"></i> صمم موقعك بضغطة زر            
+            </button>
+            <div class="settings-copyright">جميع الحقوق محفوظة للمطور أحمد غنيم</div>
         </div>
 
         <div class="container">
@@ -296,8 +307,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="copyright-bottom" id="copyright-text">جميع الحقوق محفوظة للمطور أحمد غنيم</div>
     </div>
 
     <script>
