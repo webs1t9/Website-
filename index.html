@@ -5,81 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>منصة المواقع الذكية</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Dancing+Script:wght@700&family=El+Messiri:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Dancing+Script:wght@700&family=El+Messiri:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         /* =========================================================
-           1. CSS لوحة التحكم (العميل)
+           1. CSS الواجهة الرئيسية (الاحترافية - SaaS Style)
            ========================================================= */
         body.dashboard-mode {
-            font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px;
+            font-family: 'Cairo', sans-serif; 
+            background: #f0f4f8; 
+            display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 30px 15px;
         }
-        .dash-box {
-            background: #fff; padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); width: 100%; max-width: 480px;
-        }
-        .dash-title { text-align: center; color: #2c3e50; font-size: 1.6rem; font-weight: 700; margin-bottom: 25px; font-family: 'El Messiri', sans-serif; white-space: nowrap; }
         
-        .dash-group { margin-bottom: 18px; text-align: right; }
-        .dash-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #34495e; font-size: 0.95rem; }
-        .dash-group input, .dash-group select { width: 100%; padding: 14px; border: 2px solid #ecf0f1; border-radius: 12px; font-family: 'Cairo'; outline: none; transition: 0.3s; box-sizing: border-box; }
-        .dash-group input:focus, .dash-group select:focus { border-color: #007AFF; background: #f8fbfe; }
+        .dash-box {
+            background: #ffffff; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); 
+            width: 100%; 
+            max-width: 550px; 
+            overflow: hidden;
+        }
+
+        /* رأس الواجهة (الزجاجي الجديد الاحترافي) */
+        .dash-header {
+            margin: 25px 25px 10px 25px; /* فصل الترويسة لتبدو كبطاقة عائمة */
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.02) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 122, 255, 0.15);
+            border-radius: 18px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.05), inset 0 0 15px rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        .dash-header h2 {
+            margin: 0;
+            font-family: 'El Messiri', sans-serif;
+            font-size: 1.35rem; /* تم تصغير الخط بشكل متناسق */
+            font-weight: 700;
+            color: #007AFF; /* لون متناسق مع الزجاج */
+        }
+        .dash-header p {
+            margin: 4px 0 0;
+            font-size: 0.75rem; /* تصغير الجملة الفرعية */
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        .dash-body {
+            padding: 15px 30px 30px 30px;
+        }
+
+        /* البطاقات والأقسام */
+        .section-card {
+            background: #fcfcfd;
+            border: 1px solid #eef2f5;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+        }
+        .section-title {
+            font-size: 1.05rem;
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #eef2f5;
+            padding-bottom: 12px;
+        }
+        .section-title i { color: #007AFF; }
+
+        .dash-group { margin-bottom: 15px; text-align: right; }
+        .dash-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #4a5568; font-size: 0.9rem; }
+        .dash-group input, .dash-group select { 
+            width: 100%; padding: 12px 15px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 10px; font-family: 'Cairo'; outline: none; 
+            transition: all 0.3s; box-sizing: border-box; 
+            background: #ffffff;
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+        .dash-group input:focus, .dash-group select:focus { 
+            border-color: #007AFF; 
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1); 
+        }
+        .dash-group input::placeholder { color: #a0aec0; font-size: 0.85rem; }
+        
         .theme-select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 15px center; }
         
+        /* قسم المميزات */
+        .features-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 15px 5px;
+        }
+        .feature-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 32%;
+        }
+        .feature-box i {
+            font-size: 1.2rem; width: 40px; height: 40px; border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; transition: transform 0.3s ease;
+        }
+        .feature-box:hover i { transform: translateY(-3px); }
+        .feature-box span { font-size: 0.8rem; font-family: 'Cairo', sans-serif; color: #2d3748; font-weight: 700; }
+        .feature-box p { font-size: 0.65rem; color: #718096; margin-top: 2px; margin-bottom: 0; font-weight: 600; }
+
+        /* ستايل زر الإنشاء - زجاجي (Glassmorphism) مثل iOS 19 */
         .dash-btn { 
             width: 100%; 
-            padding: 14px; 
-            background: #007AFF; 
-            color: #fff; 
-            font-size: 1.1rem; 
+            max-width: 220px; 
+            margin: 0 auto; 
+            padding: 12px; 
+            background: rgba(0, 122, 255, 0.1); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            color: #007AFF; 
+            font-size: 0.95rem; 
             font-family: 'Cairo', sans-serif; 
-            font-weight: 700; 
-            border: none; 
-            border-radius: 30px; 
+            font-weight: 800; 
+            border: 1px solid rgba(0, 122, 255, 0.2); 
+            border-radius: 20px; 
             cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            margin-top: 10px; 
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.1); 
+            display: flex; justify-content: center; align-items: center; gap: 8px;
         }
         .dash-btn:hover:not(:disabled) { 
-            transform: scale(0.97); 
-            background: #0066cc;
-            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2); 
+            background: rgba(0, 122, 255, 0.2); 
+            transform: scale(0.96); 
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.15); 
         }
-        .dash-btn:disabled { background: #a2c8f2; cursor: not-allowed; box-shadow: none; transform: scale(1); }
+        .dash-btn:disabled { 
+            background: rgba(160, 174, 192, 0.1); 
+            color: #a0aec0;
+            border-color: rgba(160, 174, 192, 0.2);
+            cursor: not-allowed; box-shadow: none; transform: none; 
+        }
 
-        .dash-result { margin-top: 25px; padding: 20px; background: #eafaf1; border: 2px dashed #2ecc71; border-radius: 15px; display: none; text-align: center; animation: fadeIn 0.5s; }
-        .dash-result h4 { color: #27ae60; margin-bottom: 10px; font-size: 1.2rem; font-weight: bold; }
-        .dash-result input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #aaddb8; border-radius: 10px; text-align: left; direction: ltr; font-size: 0.85rem; background: #fff; box-sizing: border-box; color: #555;}
-        .action-btn { background: #2ecc71; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-family: 'Cairo'; font-weight: 700; width: 100%; margin-bottom: 10px; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none;}
-        .action-btn:hover { background: #27ae60; }
-        .action-btn.secondary { background: #34495e; }
-        .action-btn.secondary:hover { background: #2c3e50; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .dash-result { margin-top: 25px; padding: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; display: none; text-align: center; animation: slideDown 0.5s ease-out; }
+        .dash-result h4 { color: #166534; margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;}
+        .dash-result input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #86efac; border-radius: 8px; text-align: left; direction: ltr; font-size: 0.85rem; background: #fff; box-sizing: border-box; color: #4b5563;}
+        
+        .action-btn { background: #22c55e; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-family: 'Cairo'; font-weight: 700; width: 100%; margin-bottom: 10px; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none;}
+        .action-btn:hover { background: #16a34a; }
+        .action-btn.secondary { background: #475569; }
+        .action-btn.secondary:hover { background: #334155; }
+        
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .dash-footer { margin-top: 35px; padding-top: 25px; border-top: 1px solid #ecf0f1; text-align: center; }
-        .dash-footer p { color: #34495e; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
+        .dash-footer { margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; }
+        .dash-footer p { color: #4a5568; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; }
         
         .contact-email { 
-            display: inline-flex; 
-            justify-content: center;
-            align-items: center; 
-            background: #fff; 
-            border: 1px solid #eaeaea; 
-            width: 45px;
-            height: 45px;
-            border-radius: 50%; 
-            color: #ea4335; 
-            font-size: 1.4rem; 
-            text-decoration: none; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-            transition: all 0.3s ease; 
-            margin-bottom: 20px;
+            display: inline-flex; justify-content: center; align-items: center; 
+            background: #fff; border: 1px solid #e2e8f0; width: 42px; height: 42px; border-radius: 50%; 
+            color: #ea4335; font-size: 1.2rem; text-decoration: none; transition: all 0.3s ease; margin-bottom: 10px; 
         }
-        .contact-email:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 15px rgba(234, 67, 53, 0.2); border-color: #ea4335; background: #ea4335; color: white; }
+        .contact-email:hover { background: #ea4335; color: white; border-color: #ea4335; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2); }
         
-        .dash-copyright { font-size: 0.5rem; color: #bdc3c7; font-weight: 600; letter-spacing: 0.5px; margin-top: 5px; }
+        /* حقوق الملكية في الواجهة الرئيسية */
+        .dash-copyright { font-size: 0.6rem; color: #a0aec0; font-weight: 600; letter-spacing: 0.5px; margin-top: 10px; font-family: 'Cairo', sans-serif;}
 
         /* =========================================================
            2. CSS التصميم الاحترافي (للزوار) - الألوان (Themes)
@@ -122,7 +220,6 @@
 
         .container { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; min-height: 100vh; padding: 20px; text-align: center; padding-top: 10vh; padding-bottom: 50px; }
 
-        /* تم تصغير زر الإعدادات إلى 34 بكسل */
         .settings-icon { position: fixed; top: 20px; left: 20px; color: var(--text-color); background: var(--btn-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); width: 34px; height: 34px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; z-index: 1005; opacity: 0; box-shadow: 0 4px 15px var(--shadow-color); animation: popGlass 0.8s 2.4s forwards; transition: transform 0.3s ease; }
         .settings-icon:hover { transform: translateY(-2px) scale(1.05); }
         .settings-icon .line { width: 16px; height: 2px; background-color: var(--text-color); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
@@ -136,7 +233,6 @@
         .settings-panel { position: fixed; top: 20px; left: 20px; width: 250px; background: var(--panel-bg); backdrop-filter: blur(25px); z-index: 1000; box-shadow: 0 10px 40px var(--shadow-color); padding: 65px 20px 25px 20px; border-radius: 25px; border: 1px solid var(--border-color); direction: rtl; transform-origin: top left; transform: scale(0.9); opacity: 0; visibility: hidden; transition: all 0.5s; }
         .settings-panel.active { transform: scale(1); opacity: 1; visibility: visible; }
 
-        /* تم تصغير حجم الخط والمسافات الداخلية لزر التصميم */
         .create-site-btn {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
@@ -151,27 +247,11 @@
             width: 100%;
             margin: 0;
             transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 15px var(--shadow-color);
+            display: flex; justify-content: center; align-items: center; gap: 6px; box-shadow: 0 4px 15px var(--shadow-color);
         }
-        .create-site-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--shadow-color);
-        }
+        .create-site-btn:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow-color); }
 
-        /* تنسيق جملة الحقوق المنقولة داخل الإعدادات */
-        .settings-copyright {
-            font-family: 'Cairo', sans-serif; 
-            font-size: 6px; 
-            color: #8e8e8e; 
-            letter-spacing: 0.5px; 
-            text-align: center;
-            margin-top: 15px;
-        }
+        .settings-copyright { font-family: 'Cairo', sans-serif; font-size: 6px; color: #8e8e8e; letter-spacing: 0.5px; text-align: center; margin-top: 15px; }
 
         .profile-pic { width: 90px; height: 90px; border-radius: 50%; background-size: cover; background-position: center; border: 3px solid var(--border-color); box-shadow: 0 10px 25px var(--shadow-color); margin-bottom: 12px; opacity: 0; animation: popGlass 0.8s 2.5s forwards, gentlePulse 5s ease-in-out 3.3s infinite; }
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); box-shadow: 0 10px 25px var(--shadow-color); } 50% { transform: scale(1.03); box-shadow: 0 18px 35px var(--shadow-color); } }
@@ -206,70 +286,102 @@
 
     <div id="dashboardView" style="display: none; width: 100%;">
         <div class="dash-box">
-            <h2 class="dash-title">مصمم المواقع الذكي</h2>
             
-            <div class="dash-group">
-                <label>اسمك (سيظهر أعلى الصفحة) <span style="color:red">*</span></label>
-                <input type="text" id="inputName" placeholder="مثال: Ahmed Ghoneim">
-            </div>
-            
-            <div class="dash-group">
-                <label><i class="fas fa-palette" style="color: #8e44ad;"></i> لون الموقع</label>
-                <select id="inputTheme" class="theme-select">
-                    <option value="black">أسود لامع (الافتراضي)</option>
-                    <option value="blue">أزرق ملكي</option>
-                    <option value="white">أبيض</option>
-                    <option value="offwhite">أوف وايت ملكي</option>
-                </select>
-            </div>
-
-            <div class="dash-group">
-                <label>رابط صورتك الشخصية</label>
-                <input type="url" id="inputImage" placeholder="مثال: https://.../image.jpg">
+            <div class="dash-header">
+                <h2><i class="fas fa-layer-group" style="margin-left: 8px;"></i> منصة المواقع الذكية</h2>
+                <p>صمم صفحتك الشخصية الاحترافية في ثوانٍ</p>
             </div>
             
-            <hr style="border: 0; height: 1px; background: #eee; margin: 25px 0;">
-            <h4 style="text-align: center; color: #2c3e50; margin-bottom: 15px; font-family: 'El Messiri';">روابط حساباتك</h4>
-            
-            <div class="dash-group">
-                <label><i class="fab fa-facebook" style="color:#1877F2;"></i> فيسبوك</label>
-                <input type="url" id="inputFb" placeholder="https://facebook.com/...">
-            </div>
-            <div class="dash-group">
-                <label><i class="fab fa-instagram" style="color:#E4405F;"></i> انستجرام</label>
-                <input type="url" id="inputIg" placeholder="https://instagram.com/...">
-            </div>
-            <div class="dash-group">
-                <label><i class="fab fa-tiktok" style="color:#000;"></i> تيك توك</label>
-                <input type="url" id="inputTk" placeholder="https://tiktok.com/@...">
-            </div>
-            <div class="dash-group">
-                <label><i class="fab fa-telegram" style="color:#24A1DE;"></i> تليجرام</label>
-                <input type="url" id="inputTg" placeholder="https://t.me/...">
-            </div>
-            <div class="dash-group">
-                <label><i class="fas fa-envelope" style="color:#EA4335;"></i> الإيميل</label>
-                <input type="email" id="inputEmail" placeholder="example@gmail.com">
-            </div>
-
-            <button class="dash-btn" id="createBtn" onclick="startGeneration()">إنشاء</button>
-
-            <div class="dash-result" id="resultArea">
-                <h4>تم إنشاء صفحتك بنجاح!</h4>
-                <p style="font-size:13px; color:#555; margin-bottom:10px;">هذا هو رابطك السحري، انسخه وشاركه مع الناس.</p>
-                <input type="text" id="resultUrl" readonly>
-                <button class="action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> نسخ الرابط</button>
-                <button class="action-btn secondary" onclick="openResult()"><i class="fas fa-external-link-alt"></i> فتح صفحتي لمعاينتها</button>
-            </div>
-
-            <div class="dash-footer">
-                <p>لتواصل معنا ارسل رساله</p>
+            <div class="dash-body">
                 
-                <a href="mailto:qwrtreu1245@gmail.com" class="contact-email" title="إرسال رسالة إلينا">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <div class="section-card">
+                    <div class="section-title"><i class="fas fa-user-circle"></i> معلومات الصفحة الأساسية</div>
+                    
+                    <div class="dash-group">
+                        <label>اسمك (سيظهر أعلى الصفحة) <span style="color:#ef4444;">*</span></label>
+                        <input type="text" id="inputName" placeholder="مثال: Ahmed">
+                    </div>
+                    
+                    <div class="dash-group">
+                        <label>رابط صورتك الشخصية (اختياري)</label>
+                        <input type="url" id="inputImage" placeholder="مثال: https://.../image.jpg">
+                    </div>
+
+                    <div class="dash-group">
+                        <label>مظهر الصفحة (Theme)</label>
+                        <select id="inputTheme" class="theme-select">
+                            <option value="black">أسود لامع ملكي (الافتراضي)</option>
+                            <option value="blue">أزرق داكن احترافي</option>
+                            <option value="white">أبيض نقي كلاسيكي</option>
+                            <option value="offwhite">أوف وايت مريح للعين</option>
+                        </select>
+                    </div>
+                </div>
                 
-                <div class="dash-copyright">جميع الحقوق محفوظة للمطور أحمد غنيم</div>
+                <div class="section-card">
+                    <div class="section-title"><i class="fas fa-link"></i> روابط حساباتك (اختياري)</div>
+                    <p style="font-size: 0.8rem; color: #718096; margin-top: -10px; margin-bottom: 15px;">الحقل الذي تتركه فارغاً لن يظهر في صفحتك.</p>
+                    
+                    <div class="dash-group">
+                        <label><i class="fab fa-facebook" style="color:#1877F2; margin-left: 5px;"></i> فيسبوك</label>
+                        <input type="url" id="inputFb" placeholder="https://facebook.com/...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fab fa-instagram" style="color:#E4405F; margin-left: 5px;"></i> انستجرام</label>
+                        <input type="url" id="inputIg" placeholder="https://instagram.com/...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fab fa-tiktok" style="color:#000; margin-left: 5px;"></i> تيك توك</label>
+                        <input type="url" id="inputTk" placeholder="https://tiktok.com/@...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fab fa-telegram" style="color:#24A1DE; margin-left: 5px;"></i> تليجرام</label>
+                        <input type="url" id="inputTg" placeholder="https://t.me/...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fas fa-envelope" style="color:#EA4335; margin-left: 5px;"></i> البريد الإلكتروني (الإيميل)</label>
+                        <input type="email" id="inputEmail" placeholder="example@gmail.com">
+                    </div>
+                </div>
+
+                <div class="features-container">
+                    <div class="feature-box">
+                        <i class="fas fa-gift" style="color: #10b981; background: #d1fae5;"></i>
+                        <span>مجاني 100%</span>
+                        <p>لا رسوم خفية</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-bolt" style="color: #f59e0b; background: #fef3c7;"></i>
+                        <span>سريع جداً</span>
+                        <p>استجابة فورية</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-ban" style="color: #ef4444; background: #fee2e2;"></i>
+                        <span>لا إعلانات</span>
+                        <p>تجربة نقية</p>
+                    </div>
+                </div>
+
+                <button class="dash-btn" id="createBtn" onclick="startGeneration()">
+                    <i class="fas fa-magic"></i> إنشاء موقعي الآن
+                </button>
+
+                <div class="dash-result" id="resultArea">
+                    <h4><i class="fas fa-check-circle"></i> تم إنشاء صفحتك بنجاح!</h4>
+                    <p style="font-size:13px; color:#4b5563; margin-bottom:12px;">هذا هو رابطك السحري، انسخه وشاركه في البايو الخاص بك.</p>
+                    <input type="text" id="resultUrl" readonly>
+                    <button class="action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> نسخ الرابط</button>
+                    <button class="action-btn secondary" onclick="openResult()"><i class="fas fa-external-link-alt"></i> معاينة صفحتي</button>
+                </div>
+
+                <div class="dash-footer">
+                    <p>هل تحتاج إلى مساعدة؟</p>
+                    <a href="mailto:qwrtreu1245@gmail.com" class="contact-email" title="إرسال رسالة إلينا">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <div class="dash-copyright">جميع الحقوق محفوظة للمطور أحمد غنيم</div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -300,7 +412,7 @@
             </div>
             <div class="main-content">
                 <div class="links-container" id="dynamicLinks"></div>
-                </div>
+            </div>
         </div>
     </div>
 
@@ -327,9 +439,8 @@
 
             const linksContainer = document.getElementById('dynamicLinks');
             
-            // هذه الوظيفة تتجاهل أي رابط يتم تركه فارغاً ولن تنشئ زراً له
             function createLink(url, iconClass, colorStyle, text) {
-                if (!url) return; // إذا كان الرابط فارغاً، يتم إيقاف إنشاء الزر
+                if (!url) return;
                 const wrapper = document.createElement('div');
                 wrapper.className = 'btn-wrapper';
                 wrapper.innerHTML = `<a href="${url}" class="btn" target="_blank"><i class="${iconClass}" style="${colorStyle}"></i> ${text}</a>`;
@@ -363,18 +474,18 @@
             btn.disabled = true;
             
             let count = 3;
-            btn.innerText = "جاري التجهيز " + count + "...";
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> جاري التجهيز ${count}...`;
 
             const interval = setInterval(() => {
                 count--;
                 if (count > 0) {
-                    btn.innerText = "جاري التجهيز " + count + "...";
+                    btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> جاري التجهيز ${count}...`;
                 } else {
                     clearInterval(interval);
-                    btn.innerText = "اكتمل!";
+                    btn.innerHTML = `<i class="fas fa-check"></i> اكتمل!`;
                     setTimeout(() => {
                         generateLink();
-                        btn.innerText = "إنشاء";
+                        btn.innerHTML = `<i class="fas fa-magic"></i> إنشاء موقعي الآن`;
                         btn.disabled = false;
                     }, 500);
                 }
@@ -394,7 +505,6 @@
 
             fields.forEach((field, index) => {
                 const val = document.getElementById(ids[index]).value.trim();
-                // هنا النظام يجمع فقط البيانات التي تم إدخالها ويتجاهل الحقول الفارغة
                 if (val) params.set(field, val);
             });
 
@@ -406,7 +516,7 @@
         function copyResult() {
             document.getElementById('resultUrl').select();
             document.execCommand("copy");
-            alert("تم نسخ الرابط السحري!");
+            alert("تم نسخ الرابط السحري بنجاح!");
         }
 
         function openResult() {
