@@ -6,7 +6,7 @@
     <title>منصة المواقع الذكية</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Dancing+Script:wght@700&family=El+Messiri:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         /* =========================================================
@@ -80,7 +80,7 @@
         }
         .section-title i { color: #007AFF; }
 
-        /* ألوان الحقول المريحة للعين مطبقة هنا */
+        /* ألوان الحقول المريحة للعين */
         .dash-group { margin-bottom: 15px; text-align: right; }
         .dash-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #4a5568; font-size: 0.9rem; }
         .dash-group input, .dash-group select { 
@@ -124,7 +124,7 @@
         .feature-box span { font-size: 0.8rem; font-family: 'Cairo', sans-serif; color: #2d3748; font-weight: 700; }
         .feature-box p { font-size: 0.65rem; color: #718096; margin-top: 2px; margin-bottom: 0; font-weight: 600; }
 
-        /* ستايل زر الإنشاء - زجاجي (Glassmorphism) مثل iOS 19 */
+        /* ستايل زر الإنشاء - زجاجي (Glassmorphism) */
         .dash-btn { 
             width: 100%; 
             max-width: 220px; 
@@ -336,6 +336,18 @@
                         <input type="url" id="inputTk" placeholder="https://tiktok.com/@...">
                     </div>
                     <div class="dash-group">
+                        <label><i class="fab fa-snapchat" style="color:#FFFC00; text-shadow: 0 0 2px rgba(0,0,0,0.5); margin-left: 5px;"></i> سناب شات</label>
+                        <input type="url" id="inputSc" placeholder="https://snapchat.com/add/...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fa-brands fa-x-twitter" style="color:#000; margin-left: 5px;"></i> إكس (تويتر)</label>
+                        <input type="url" id="inputX" placeholder="https://x.com/...">
+                    </div>
+                    <div class="dash-group">
+                        <label><i class="fa-brands fa-threads" style="color:#000; margin-left: 5px;"></i> ثريدز</label>
+                        <input type="url" id="inputTh" placeholder="https://threads.net/@...">
+                    </div>
+                    <div class="dash-group">
                         <label><i class="fab fa-telegram" style="color:#24A1DE; margin-left: 5px;"></i> تليجرام</label>
                         <input type="url" id="inputTg" placeholder="https://t.me/...">
                     </div>
@@ -376,7 +388,7 @@
                 </div>
 
                 <div class="dash-footer">
-                    <p>هل تحتاج إلى مساعدة؟</p>
+                    <p style="font-size: 0.8rem; color: #4a5568; margin-bottom: 5px; font-weight: 700;">لطلب إضافة المزيد من المواقع أرسل رسالة.</p>
                     <a href="mailto:qwrtreu1245@gmail.com" class="contact-email" title="إرسال رسالة إلينا">
                         <i class="fas fa-envelope"></i>
                     </a>
@@ -448,9 +460,13 @@
                 linksContainer.appendChild(wrapper);
             }
 
+            // تحميل الروابط وإظهار الأزرار
             createLink(urlParams.get('fb'), 'fab fa-facebook', 'color: #1877F2;', 'Facebook');
             createLink(urlParams.get('ig'), 'fab fa-instagram', 'color: #E4405F;', 'Instagram');
             createLink(urlParams.get('tk'), 'fab fa-tiktok', '', 'TikTok');
+            createLink(urlParams.get('sc'), 'fab fa-snapchat', 'color: #FFFC00; text-shadow: 0px 0px 2px rgba(0,0,0,0.8);', 'Snapchat');
+            createLink(urlParams.get('x'), 'fa-brands fa-x-twitter', '', 'X');
+            createLink(urlParams.get('th'), 'fa-brands fa-threads', '', 'Threads');
             createLink(urlParams.get('tg'), 'fab fa-telegram', 'color: #24A1DE;', 'Telegram');
             
             const emUrl = urlParams.get('em');
@@ -501,8 +517,9 @@
             const theme = document.getElementById('inputTheme').value;
             if (theme !== 'black') { params.set('c', theme); }
 
-            const fields = ['i', 'fb', 'ig', 'tk', 'tg', 'em'];
-            const ids = ['inputImage', 'inputFb', 'inputIg', 'inputTk', 'inputTg', 'inputEmail'];
+            // تم إضافة اختصارات المواقع الجديدة هنا (sc, x, th)
+            const fields = ['i', 'fb', 'ig', 'tk', 'sc', 'x', 'th', 'tg', 'em'];
+            const ids = ['inputImage', 'inputFb', 'inputIg', 'inputTk', 'inputSc', 'inputX', 'inputTh', 'inputTg', 'inputEmail'];
 
             fields.forEach((field, index) => {
                 const val = document.getElementById(ids[index]).value.trim();
