@@ -362,6 +362,10 @@
                         <input type="url" id="inputTg" placeholder="https://t.me/...">
                     </div>
                     <div class="dash-group">
+                        <label><i class="fab fa-whatsapp" style="color:#25D366; margin-left: 5px;"></i> واتساب</label>
+                        <input type="url" id="inputWa" placeholder="https://wa.me/201xxxxxxxxx">
+                    </div>
+                    <div class="dash-group">
                         <label><i class="fas fa-envelope" style="color:#EA4335; margin-left: 5px;"></i> البريد الإلكتروني (الإيميل)</label>
                         <input type="email" id="inputEmail" placeholder="example@gmail.com">
                     </div>
@@ -395,6 +399,10 @@
                     <input type="text" id="resultUrl" readonly>
                     <button class="action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> نسخ الرابط</button>
                     <button class="action-btn secondary" onclick="openResult()"><i class="fas fa-external-link-alt"></i> معاينة صفحتي</button>
+                    
+                    <div style="margin-top: 15px; font-size: 0.85rem; color: #1f2937; background: #e5e7eb; padding: 12px; border-radius: 8px; border: 1px dashed #9ca3af;">
+                        <strong><i class="fas fa-lightbulb" style="color: #f59e0b;"></i> نصيحة احترافية:</strong> لاختصار هذا الرابط الطويل، ننصحك باستخدام تطبيق <strong>One URL</strong>، فهو احترافي وصغير الحجم جداً!
+                    </div>
                 </div>
 
                 <div class="dash-footer">
@@ -485,6 +493,7 @@
             createLink(urlParams.get('x'), 'fa-brands fa-x-twitter', '', 'X');
             createLink(urlParams.get('th'), 'fa-brands fa-threads', '', 'Threads');
             createLink(urlParams.get('tg'), 'fab fa-telegram', 'color: #24A1DE;', 'Telegram');
+            createLink(urlParams.get('wa'), 'fab fa-whatsapp', 'color: #25D366;', 'WhatsApp');
             
             const emUrl = urlParams.get('em');
             if (emUrl) {
@@ -534,9 +543,9 @@
             const theme = document.getElementById('inputTheme').value;
             if (theme !== 'black') { params.set('c', theme); }
 
-            // تم إضافة اختصارات المواقع الجديدة هنا (sc, x, th)
-            const fields = ['i', 'fb', 'ig', 'tk', 'sc', 'x', 'th', 'tg', 'em'];
-            const ids = ['inputImage', 'inputFb', 'inputIg', 'inputTk', 'inputSc', 'inputX', 'inputTh', 'inputTg', 'inputEmail'];
+            // تم إضافة اختصار الواتساب (wa)
+            const fields = ['i', 'fb', 'ig', 'tk', 'sc', 'x', 'th', 'tg', 'wa', 'em'];
+            const ids = ['inputImage', 'inputFb', 'inputIg', 'inputTk', 'inputSc', 'inputX', 'inputTh', 'inputTg', 'inputWa', 'inputEmail'];
 
             fields.forEach((field, index) => {
                 const val = document.getElementById(ids[index]).value.trim();
